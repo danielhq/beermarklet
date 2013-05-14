@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title></title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+</head>
+<body>
+	<h1>Hello this is beermarklet</h1>
+	<script src="jquery.min.js"></script> 
+	<script>
+		(function() {
+			if (jQuery !== 'undefined') {
+				// Todo: Make it jqueryless
+				var beer = document.createDocumentFragment(),
+					body = document.getElementsByTagName("body")[0];
+				beer.innerHTML = "<div class=\"beer\">asdf</div>";
+				
+
+				// Append to the DOM
+				body.innerHTML = beer.innerHTML;
+				
+			}
+		})(undefined, jQuery);
+	</script>
+</body>
+</html>
