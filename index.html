@@ -9,24 +9,64 @@
 <title></title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width">
+<style>
+	.beer {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		height: 400px;
+		width: 100%;
+		background: #FAC937;
+	}
+
+</style>
 </head>
 <body>
 	<h1>Hello this is beermarklet</h1>
 	<script src="jquery.min.js"></script> 
 	<script>
 		(function() {
-			if (jQuery !== 'undefined') {
 				// Todo: Make it jqueryless
 				var beer = document.createDocumentFragment(),
 					body = document.getElementsByTagName("body")[0];
-				beer.innerHTML = "<div class=\"beer\">asdf</div>";
 				
-
+				function randomize(up, bot) {
+					return Math.floor((Math.random()*up)+bot);
+				}
+				// This holds the number of circles 
+				var foam = Math.floor(window.innerWidth/2) - 100,
+					foamNode = [],
+					foamSize = 50,
+					i 	 = 0;
+				var glass = document.createElement("div"),
+					glassCss = { 
+						"position":"absolute", 
+						"bottom" : "0", 
+						"left":"0", 
+						"height":"400px", 
+						"width":"100%",
+						"background":"#FAC937"
+					}
+				for (var prop in glassCss) {
+					glass.style[prop] = glassCss[prop];
+				}
+ 				for (i; i <= foam; i++) {
+ 					foamNode[i] = document.createElement("div");
+ 					foamNode[i].style.width = foamSize + "px";
+ 					foamNode[i].style.height = foamSize + "px";
+ 					foamNode[i].style.background = "white";
+ 					foamNode[i].style.borderRadius = foamSize / 2 + "px";
+ 					foamNode[i].style.position = "absolute";
+ 					foamNode[i].style.top  = randomize(15, 0) + "px";
+ 					foamNode[i].style.left = Math.floor(foamSize * ( i / 2) ) + "px";
+ 					glass.appendChild(foamNode[i]);
+ 				}
 				// Append to the DOM
-				body.innerHTML = beer.innerHTML;
+				beer.appendChild(glass);
+				console.log(glass);
+				body.appendChild(beer);
 				
-			}
-		})(undefined, jQuery);
+		})();
 	</script>
 </body>
 </html>
